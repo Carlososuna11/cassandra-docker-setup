@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:5.0.2  # Puedes especificar la versión exacta
+    container_name: cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=TestCluster
+      - CASSANDRA_NUM_TOKENS=256
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_SEEDS=cassandra
+    ports:
+      - "9042:9042"  # Puerto por defecto de Cassandra
+    volumes:
+      - cassandra_data:/var/lib/cassandra  # Persistencia de datos
+
+volumes:
+  cassandra_data:
